@@ -1,0 +1,25 @@
+void solve(vector<int>&nums , Node* root){
+    if(!root){
+        return ;
+    }
+    solve(nums , root->left);
+    nums.push_back(root->data);
+    solve(nums , root->right);
+}
+float findMedian(struct Node *root)
+{
+     vector<int>nums;
+     solve(nums , root);
+     int n = nums.size() - 1;
+     float ans;
+     if(n % 2 != 0){
+         int a = n / 2;
+         int b = a + 1;
+         ans = (float)(nums[a] + nums[b])/2;
+     }
+     else{
+         int a = (n /2) ;
+         ans = (float)nums[a];
+     }
+     return ans;
+}
